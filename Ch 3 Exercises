@@ -1,0 +1,38 @@
+Solutions
+
+Question 1 - 
+SELECT VendorContactFName,VendorContactLName,VendorName
+FROM Vendors
+ORDER BY VendorContactLName,VendorContactFName
+
+Question 2 -
+SELECT InvoiceNumber AS Number,InvoiceTotal AS Total,(PaymentTotal + CreditTotal) AS Credits,
+  (InvoiceTotal - (PaymentTotal + CreditTotal)) AS Balance
+FROM Invoices
+
+Question 3 -
+SELECT (VendorContactLName + ', ' + VendorContactFName) AS FullName
+FROM Vendors
+ORDER BY VendorContactLName,VendorContactFName
+
+Question 4 -
+SELECT InvoiceTotal, (InvoiceTotal * .1) AS '10%', (InvoiceTotal + (InvoiceTotal * .1)) AS 'Plus 10%'
+FROM Invoices
+
+Question 5 -
+SELECT InvoiceNumber AS Number,	InvoiceTotal AS Total,	(PaymentTotal + CreditTotal) AS Credits,
+  (InvoiceTotal - (PaymentTotal + CreditTotal)) AS Balance
+FROM Invoices 
+WHERE InvoiceTotal BETWEEN 500 AND 10000
+
+Question 6 -
+SELECT (VendorContactLName + ', ' + VendorContactFName) AS FullName
+FROM Vendors
+WHERE VendorContactLName LIKE '[A,B,C,E]%'
+ORDER BY VendorContactLName,VendorContactFName
+
+Question 7 -
+SELECT PaymentDate
+FROM Invoices
+WHERE (PaymentDate IS NULL AND (InvoiceTotal - (PaymentTotal + CreditTotal)) > 0)
+	OR (PaymentDate IS NOT NULL AND (InvoiceTotal - (PaymentTotal + CreditTotal)) <= 0);
