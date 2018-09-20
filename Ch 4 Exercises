@@ -43,10 +43,15 @@ ORDER BY 'Name'
 SELECT DISTINCT GLAccounts.AccountNo, AccountDescription
 FROM GLAccounts LEFT JOIN InvoiceLineItems
 	ON GLAccounts.AccountNo = InvoiceLineItems.AccountNo
-
---Question 8
-SELECT DISTINCT GLAccounts.AccountNo, AccountDescription
-FROM GLAccounts LEFT JOIN InvoiceLineItems
-	ON GLAccounts.AccountNo = InvoiceLineItems.AccountNo
 WHERE InvoiceLineItems.AccountNo IS NULL
 ORDER BY AccountNo
+
+--Question 8
+	SELECT 'CA' AS VendorState, VendorName 
+	FROM Vendors
+	WHERE VendorState = 'CA'
+UNION
+	SELECT 'Outside CA' AS VendorState, VendorName
+	FROM Vendors
+	WHERE VendorState <> 'CA'
+ORDER BY VendorName
